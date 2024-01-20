@@ -1,13 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hospitalmanagementproject/main.dart';
-import 'package:hospitalmanagementproject/views/BenhNhan/BenhNhanPage.dart';
 import 'package:hospitalmanagementproject/data/data.dart';
-import 'package:meta/dart2js.dart';
-import '../../models/BenhNhan.dart';
+import 'BenhNhanPage.dart';
 import 'FormBenhNhan.dart';
 
-class ThemBenhNhan extends StatelessWidget {
+class SuaBenhNhan extends StatelessWidget {
   final tenCt = TextEditingController();
   final diachiCt = TextEditingController();
   final cccdCt = TextEditingController();
@@ -18,14 +15,7 @@ class ThemBenhNhan extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Row(children: [
-            Text(
-              "Thêm Bệnh Nhân",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
-            ),
-          ]),
-          backgroundColor: Colors.blue),
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -120,18 +110,40 @@ class ThemBenhNhan extends StatelessWidget {
                                 ten = tenCt.text;
                                 String diachi = '';
                                 diachi = diachiCt.text;
-                                int? cccd = int.tryParse(cccdCt.text);
+                                int cccd = -1;
+                                int? cccdtemp = int.tryParse(cccdCt.text);
+                                if (cccdtemp != null) {
+                                  cccd = cccdtemp;
+                                }
                                 int id = idPhongDT[0];
                                 DateTime ns = ngaysinh[0];
                                 DateTime nk = ngaykham[0];
-
-                                if (ten != '' &&
+                                bool check = false;
+                                int indexedit = -1;
+                                for (int i = 0;
+                                    i < data.DataBenhNhan().length;
+                                    i++) {
+                                  if (cccd == -1) {
+                                    break;
+                                  }
+                                  if (cccd == data.DataBenhNhan()[i].cccd) {
+                                    indexedit = i;
+                                    check = true;
+                                  }
+                                }
+                                if (check &&
+                                    ten != '' &&
                                     diachi != '' &&
-                                    cccd != null &&
+                                    cccd != -1 &&
                                     id != -1) {
-                                  data.DataBenhNhan().add(
-                                      BenhNhan(ten, ns, nk, diachi, cccd, id));
-
+                                  data.DataBenhNhan()[indexedit].ten = ten;
+                                  data.DataBenhNhan()[indexedit].diachi =
+                                      diachi;
+                                  data.DataBenhNhan()[indexedit].ngaysinh =
+                                      ngaysinh[0];
+                                  data.DataBenhNhan()[indexedit].ngaykham =
+                                      ngaykham[0];
+                                  data.DataBenhNhan()[indexedit].idPDT = id;
                                   //dieu huong
                                   Navigator.pushReplacement(
                                     context,
@@ -141,7 +153,7 @@ class ThemBenhNhan extends StatelessWidget {
                                   );
                                 } else {
                                   final snackBar = SnackBar(
-                                    content: Text('bạn nhập không đủ dữ liệu'),
+                                    content: Text('bạn nhập không đủ dữ liệu \nhoặc không có ai có cccd như vây'),
                                   );
 
                                   ScaffoldMessenger.of(context)
@@ -149,7 +161,7 @@ class ThemBenhNhan extends StatelessWidget {
                                 }
                               },
                               child: Icon(
-                                Icons.person_add_rounded,
+                                Icons.mode_edit,
                                 size: 50,
                               )),
                         ),
