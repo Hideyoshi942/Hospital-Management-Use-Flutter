@@ -40,7 +40,7 @@ class BenhNhan {
 
   String get ten => _ten;
 
-  set name(String value) {
+  set ten(String value) {
     _ten = value;
   }
 

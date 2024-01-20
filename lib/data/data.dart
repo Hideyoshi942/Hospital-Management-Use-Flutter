@@ -12,6 +12,15 @@ class data{
     return _benhnhan;
   }
 
+  static int TimBenhNhan_cccd(int x){
+    for(int i = 0; i< _benhnhan.length; i++){
+      if(_benhnhan[i].cccd == x){
+        return i;
+      }
+    }
+    return -1;
+  }
+
   static List<PhongDieuTri> DataPhongDieuTri(){
     return _phongdieutri;
   }
