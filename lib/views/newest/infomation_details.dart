@@ -21,10 +21,12 @@ class _InformationDetailState extends State<InformationDetail> {
             backgroundColor: ui.homeTitleColor,
             foregroundColor: ui.homeBackgroundColor,
           ),
-          body: Center(
-            child: Column(
-              children: [
-              ],
+          body: Container(
+            color: Colors.yellow,
+            child: Center(
+              child: Container(
+                child: Icon(Icons.warning, size: 100,color: Colors.red,),
+              ),
             ),
           ),
         );
