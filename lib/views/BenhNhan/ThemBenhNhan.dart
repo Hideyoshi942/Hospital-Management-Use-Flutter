@@ -21,15 +21,15 @@ class ThemBenhNhan extends StatelessWidget {
       builder: (context, ui, child) {
         return Scaffold(
           appBar: AppBar(
-              title: Row(children: [
-                Text(
-                  "Thêm Bệnh Nhân",
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
-                ),
-              ]),
-              foregroundColor: ui.homeTitleColor,
-              backgroundColor: ui.homeBackgroundColor,
-              automaticallyImplyLeading: false,
+            title: Row(children: [
+              Text(
+                "Thêm Bệnh Nhân",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+              ),
+            ]),
+            foregroundColor: ui.homeTitleColor,
+            backgroundColor: ui.homeBackgroundColor,
+            automaticallyImplyLeading: false,
           ),
           body: SingleChildScrollView(
             child: Padding(
@@ -94,7 +94,8 @@ class ThemBenhNhan extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.orange,
                                     shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10)),
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     fixedSize: Size(double.infinity, 60)),
                                 onPressed: () {
                                   Navigator.pushReplacement(
@@ -118,7 +119,8 @@ class ThemBenhNhan extends StatelessWidget {
                                   style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.deepOrangeAccent,
                                       shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10)),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       fixedSize: Size(double.infinity, 60)),
                                   onPressed: () {
                                     String ten = '';
@@ -132,21 +134,22 @@ class ThemBenhNhan extends StatelessWidget {
 
                                     if (ten != '' &&
                                         diachi != '' &&
-                                        cccd != null &&
+                                        cccd != null && cccd == data.kiemTraTonTaiCCCD(cccd) &&
                                         id != -1) {
-                                      data.DataBenhNhan().add(
-                                          BenhNhan(ten, ns, nk, diachi, cccd, id));
+                                      data.DataBenhNhan().add(BenhNhan(
+                                          ten, ns, nk, diachi, cccd, id));
 
                                       //dieu huong
                                       Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) =>
-                                                BenhNhanPage(data.DataBenhNhan())),
+                                            builder: (context) => BenhNhanPage(
+                                                data.DataBenhNhan())),
                                       );
                                     } else {
                                       final snackBar = SnackBar(
-                                        content: Text('Bạn nhập không đủ dữ liệu'),
+                                        content:
+                                            Text('Bạn nhập không đủ dữ liệu hoặc cccd của bạn bị trùng!'),
                                       );
 
                                       ScaffoldMessenger.of(context)

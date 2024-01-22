@@ -289,7 +289,7 @@ class _MyPageBodyState extends State<MyPageBody> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Thông tin ứng dụng',
+                                          'Family',
                                           style: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold,
@@ -297,7 +297,7 @@ class _MyPageBodyState extends State<MyPageBody> {
                                           ),
                                         ),
                                         Text(
-                                          'Bài viết liên quan',
+                                          'Try to better for my family',
                                           style: TextStyle(color: Colors.black),
                                         ),
                                       ],
@@ -359,7 +359,7 @@ class _MyPageBodyState extends State<MyPageBody> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          'Thông tin ứng dụng',
+                                          'Trick skill for the following',
                                           style: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold,
@@ -367,7 +367,7 @@ class _MyPageBodyState extends State<MyPageBody> {
                                           ),
                                         ),
                                         Text(
-                                          'Bài viết liên quan',
+                                          'Lets see news',
                                           style: TextStyle(color: Colors.black),
                                         ),
                                       ],

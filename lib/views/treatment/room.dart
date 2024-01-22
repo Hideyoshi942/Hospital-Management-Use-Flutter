@@ -63,41 +63,34 @@ class _TreatmentState extends State<TreatmentRoom> {
                         String tenPhong = tenPhongController.text;
                         int? sucChua = int.tryParse(sucChuaController.text);
                         if (maPhong != null && maPhong.toString().length >= 3 && tenPhong.isNotEmpty && sucChua != null) {
-                          if (data.kiemTraTonTaiId(maPhong) && widget.phongDieuTri == null) {
-                            // Nếu ID phòng đã tồn tại và đang thêm mới, hiển thị thông báo
-                            final snackBar = SnackBar(content: Text('ID đã tồn tại. Vui lòng nhập ID khác.'));
-                            ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                          } else {
-                            if (widget.phongDieuTri != null) {
-                              if (!data.kiemTraTonTaiId(maPhong)) {
-                                data.capNhatPhongDieuTri(widget.phongDieuTri!, maPhong, tenPhong, sucChua);
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(builder: (_) => ListTreatment(data.DataPhongDieuTri())),
-                                );
-                              } else {
-                                final snackBar = SnackBar(content: Text('ID đã tồn tại. Vui lòng nhập ID khác.'));
-                                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                              }
-                              // chỉnh sửa phòng điều trị
-                              // data.capNhatPhongDieuTri(widget.phongDieuTri!, maPhong, tenPhong, sucChua);
-                              // Navigator.pushReplacement(
-                              //   context,
-                              //   MaterialPageRoute(builder: (_) => ListTreatment(data.DataPhongDieuTri())),
-                              // );
+                          if (widget.phongDieuTri == null) {
+                            if (data.kiemTraTonTaiId(maPhong)) {
+                              final snackBar = SnackBar(content: Text('ID đã tồn tại. Vui lòng nhập ID khác.'));
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
                             } else {
-                              // tạo mới phòng điều trị
                               data.DataPhongDieuTri().add(PhongDieuTri(maPhong, tenPhong, sucChua));
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(builder: (_) => ListTreatment(data.DataPhongDieuTri())),
                               );
                             }
+                          } else {
+                            if (maPhong != data.kiemTraTonTaiId(maPhong)) {
+                              data.capNhatPhongDieuTri(widget.phongDieuTri!, maPhong, tenPhong, sucChua);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (_) => ListTreatment(data.DataPhongDieuTri())),
+                              );
+                            } else {
+                              final snackBar = SnackBar(content: Text('Không thể thay đổi mã phòng.'));
+                              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                            }
                           }
                         } else {
                           final snackBar = SnackBar(content: Text('Thông tin không hợp lệ. Vui lòng kiểm tra lại.'));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
                         }
+
                       },
                       child: Text('Lưu'),
                     ),

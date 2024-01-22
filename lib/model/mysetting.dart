@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MySetting with ChangeNotifier {
-  double _fontSize = 10;
+  double _fontSize = 30;
   String _colorHome = 'Blue';
   String _colorBackground = 'White';
 

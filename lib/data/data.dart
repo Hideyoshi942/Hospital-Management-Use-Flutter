@@ -1,3 +1,5 @@
+import 'package:hospitalmanagementproject/model/notify.dart';
+
 import '../model/BenhNhan.dart';
 import '../model/PhongDieuTri.dart';
 
@@ -16,6 +18,11 @@ class data{
     return _phongdieutri;
   }
 
+  static List<Notify> _notify = [];
+  static List<Notify> DataNotify(){
+    return _notify;
+  }
+
   static int TimBenhNhan_cccd(int x){
     for(int i = 0; i< _benhnhan.length; i++){
       if(_benhnhan[i].cccd == x){
@@ -23,6 +30,15 @@ class data{
       }
     }
     return -1;
+  }
+
+  static bool kiemTraTonTaiCCCD(int x){
+    for (var cccd in data.DataBenhNhan()) {
+      if (cccd.cccd == x) {
+        return true;
+      }
+    }
+    return false;
   }
 
   static bool kiemTraTonTaiId(int id) {
